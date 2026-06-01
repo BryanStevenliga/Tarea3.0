@@ -1,15 +1,8 @@
-# Tarea 3.0 - Automatización de CI/CD con GitHub Actions y Docker
+## 🐳 Despliegue de la Imagen Docker (Desde GitHub Container Registry)
 
-Este repositorio contiene una aplicación básica de **Lista de Tareas (Todo List)** escrita en Python. Cuenta con un sistema de integración y entrega continua (CI/CD) que automatiza las pruebas, simula el despliegue y publica una imagen Docker en GitHub Container Registry (GHCR).
+La imagen funcional de esta aplicación está completamente empaquetada y publicada en la nube de forma pública. Cumpliendo con los requisitos de la tarea, se puede obtener directamente desde el registro de GitHub sin necesidad de compilar nada de forma local.
 
-## 🚀 Requisitos Previos
-* Python 3.10 o superior
-* Docker instalado (opcional, solo para pruebas locales)
-
----
-
-## 🛠️ Ejecución Local
-
-1. **Instalar dependencias:**
-   ```bash
-   pip install -r requirements.txt
+### 1. Nomenclatura del Contenedor:
+La imagen está registrada oficialmente bajo la siguiente estructura:
+```bash
+ghcr.io/bryanstevenliga/ejercicio:3.0.0
