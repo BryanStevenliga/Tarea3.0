@@ -8,7 +8,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/ejercicio
 
 jobs:
   build-test-deploy:
@@ -51,10 +50,16 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    # Este paso convierte tu usuario "BryanStevenliga" a minúsculas para que Docker no falle
+    - name: Convertir nombre de usuario a minúsculas
+      id: string
+      run: |
+        echo "IMAGE_NAME=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')/ejercicio" >> $GITHUB_ENV
+
     - name: Construir y publicar imagen Docker
       uses: docker/build-push-action@v5
       with:
         context: .
         push: true
         tags: |
-          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:3.0.0
+          ${{ env.REGISTRY }}/${{ env.IMAGE_ENV_NAME_NOT_SET }}${{ env.IMAGE_NAME }}:3.0.0
