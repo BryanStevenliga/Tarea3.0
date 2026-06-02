@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  dbclases:
+    image: postgres:15-alpine
+    environment: 
+      - TZ=America/Guayaquil
+      - POSTGRES_USER=quinto
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=ejemplo1
+    volumes:
+      - pg_dbclases:/var/lib/postgresql/data
+    networks:
+      - net_dbclases
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=steve@yavidoc.com
+      - PGADMIN_DEFAULT_PASSWORD=12345
+    volumes:
+      - pg_pgadmin:/var/lib/pgadmin
+    networks:
+      - net_dbclases
+    ports:
+      - "8080:80"
+    depends_on:
+      - dbclases
+
+volumes:
+  pg_dbclases:
+    external: true
+  pg_pgadmin:
+
+networks:
+  net_dbclases:
+    external: true
